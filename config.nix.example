@@ -1,0 +1,26 @@
+# Copy this to config.nix and fill in real values.
+# config.nix is gitignored — never commit it.
+{
+  adminUser = "your-username";
+
+  # Nodes that are k3s workers (agent) instead of control-plane (server)
+  workerNodes = [ "systemd" "systeme" ];
+
+  # Use 0.0.0.0 as placeholder on first install, update after tailscale assigns real IPs
+  nodeIPs = {
+    systema = "0.0.0.0";
+    systemb = "0.0.0.0";
+    systemc = "0.0.0.0";
+    systemd = "0.0.0.0";
+    systeme = "0.0.0.0";
+  };
+
+  # Per-node SSH public keys for the admin user
+  sshKeys = {
+    systema = [ "ssh-ed25519 AAAA... user@host" ];
+    systemb = [ "ssh-ed25519 AAAA... user@host" ];
+    systemc = [ "ssh-ed25519 AAAA... user@host" ];
+    systemd = [ "ssh-ed25519 AAAA... user@host" ];
+    systeme = [ "ssh-ed25519 AAAA... user@host" ];
+  };
+}
