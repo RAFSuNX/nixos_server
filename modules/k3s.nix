@@ -42,12 +42,14 @@ in
     role      = if isWorker then "agent" else "server";
     tokenFile = "/run/secrets/k3s_token";
 
+    serverAddr = lib.mkIf (!isInitNode) "https://${initNode}:6443";
+
     extraFlags = if isWorker then
-      [ "--server=https://${initNode}:6443" ] ++ agentFlags
+      agentFlags
     else if isInitNode then
       [ "--cluster-init" ] ++ serverFlags
     else
-      [ "--server=https://${initNode}:6443" ] ++ serverFlags;
+      serverFlags;
   };
 
   systemd.services.k3s = {
