@@ -1,4 +1,4 @@
-{ pkgs, adminUser, ... }:
+{ lib, pkgs, adminUser, ... }:
 
 {
   services.glusterfs.enable = true;
@@ -18,7 +18,7 @@
   # noauto — boot-time mount is handled by glusterfs-mount below.
   # glusterd starts before it reconnects to peers over Tailscale, so a
   # one-shot mount right after glusterd.service starts fails on join nodes.
-  fileSystems."/mnt/storage" = {
+  fileSystems."/mnt/storage" = lib.mkForce {
     device  = "localhost:/storage";
     fsType  = "glusterfs";
     options = [ "noauto" "_netdev" "backupvolfile-server=systema" ];
