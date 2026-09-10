@@ -1,0 +1,2 @@
+config.nix
+hosts/*/hardware-configuration.nix
