@@ -27,12 +27,14 @@ let
     "--advertise-address=${nodeIPs.${hostname}}"
     "--node-external-ip=${nodeIPs.${hostname}}"
     "--write-kubeconfig-mode=0644"
+    "--node-taint=node-role.kubernetes.io/control-plane=:PreferNoSchedule"
   ] ++ tlsSans;
 
   agentFlags = [
     "--flannel-iface=tailscale0"
     "--node-ip=${nodeIPs.${hostname}}"
     "--node-external-ip=${nodeIPs.${hostname}}"
+    "--node-label=node.kubernetes.io/role=worker"
   ];
 in
 {
