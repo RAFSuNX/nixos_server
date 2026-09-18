@@ -1,2 +1,3 @@
 config.nix
 hosts/*/hardware-configuration.nix
+.local-backup/
